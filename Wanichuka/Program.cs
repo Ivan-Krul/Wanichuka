@@ -2,11 +2,12 @@
 
 namespace Wanichuka
 {
-    class Program
+    class Program 
     {
-        static void Main(string[] args)
+        static void Main(string[] args) 
         {
-            Console.WriteLine("Hello World!");
+            float a=0.1245f;
+            Console.WriteLine(a);
         }
     }
 }
