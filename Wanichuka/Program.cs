@@ -46,7 +46,22 @@ namespace Wanichuka
 
     }
 
-    
+    class KeyManager
+    {
+        private ConsoleKeyInfo key;
+
+        
+
+        public int Sense()
+        {
+            if (key.Key.ToString() == "W") return 'W';
+            else return '\0';
+        }
+        public ConsoleKeyInfo Exctract()
+        {
+            return key;
+        }
+    }
     class Snake
     {
         private class Tail
@@ -89,6 +104,7 @@ namespace Wanichuka
             tails[0].Slide(start_x, start_y);
         }
 
+        
         public void NewTail()
         {
             tails.Add(new Tail());
@@ -106,7 +122,7 @@ namespace Wanichuka
     {
         static void Main() 
         {
-
+           
         }
     }
 }
