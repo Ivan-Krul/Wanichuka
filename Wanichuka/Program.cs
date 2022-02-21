@@ -4,119 +4,41 @@ using System.Collections.Generic;
 
 namespace Wanichuka
 {
-
-    class Map
+    class Food
     {
-        private char[,] _plate;
-        private int _x;
-        private int _y;
+        public int benefit_productivity = 0;
+        public int benefit_damage = 0;
 
-        public Map(int x,int y)
+        public Food(int benefit_productivity, int benefit_damage)
         {
-            _x = x;
-            _y = y;
-
-            _plate=new char[_x,_y];
-        }
-
-        public void Insert(int x,int y, char ch)
-        {
-            if (-1 < x && x < _x && -1 < y && y < _y) _plate[x, y] = ch;
-        }
-
-        public char PullOut(int x,int y)
-        {
-            if (-1 < x && x < _x && -1 < y && y < _y) return _plate[x, y];
-            else return '\0';
-        }
-
-        public void WriteOut()
-        {
-            string stroke="";
-            for (int i = 0; i < _y; i++)
-            {
-                for (int j = 0; j < _x; j++)
-                {
-                    stroke += _plate[j, i];
-                }
-            }
-            Console.WriteLine(stroke);
-
-        }
-
-    }
-
-    class KeyManager
-    {
-        private ConsoleKeyInfo key;
-
-        
-
-        public int Sense()
-        {
-            if (key.Key.ToString() == "W") return 'W';
-            else return '\0';
-        }
-        public ConsoleKeyInfo Exctract()
-        {
-            return key;
+            this.benefit_productivity = benefit_productivity;
+            this.benefit_damage = benefit_damage;
         }
     }
-    class Snake
+    class Creature
     {
-        private class Tail
-        {
-            private int _x;
-            private int _y;
+        private string name { get; }
+        private int productivity { get; }
+        private int damage { get; }
+        private int defense { get; }
+        public List<Food> foods;
 
-            public void Slide(int x, int y)
-            {
-                _x = x;
-                _y = y;
-            }
-
-            public int X()
-            {
-                return _x;
-            }
-
-            public int Y()
-            {
-                return _y;
-            }
+        public Creature(string name,int productivity,int damage,int defense) {
+            this.name = name;
+            this.productivity = productivity;
+            this.damage = damage;
+            this.defense = defense;
         }
 
-        private List<Tail> tails = new List<Tail>(1);
-
-        public enum Direction
+        public void AddFood(Food food)
         {
-            up,
-            right,
-            down,
-            left
-        } 
-        private Direction dir;
-
-        public Snake(int start_x,int start_y)
-        {
-            tails.Add(new Tail());
-            dir = Direction.up;
-            tails[0].Slide(start_x, start_y);
+            foods.Add(food);
         }
-
-        
-        public void NewTail()
+        public void UseFood(int index)
         {
-            tails.Add(new Tail());
-
-            int preview = tails.Count - 1;
-
-            tails[preview].Slide(tails[preview-1].X(), tails[preview - 1].Y());
+            foods[index];
         }
-
     }
-
-    
 
     class Program 
     {
